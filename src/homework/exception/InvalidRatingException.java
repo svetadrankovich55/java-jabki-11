@@ -1,7 +1,7 @@
 package homework.exception;
 
 public class InvalidRatingException extends Exception{
-    public InvalidRatingException(String message) {
-        super(message);
+    public InvalidRatingException() {
+        super("Рейтинг должен быть от 1 до 5");
     }
 }

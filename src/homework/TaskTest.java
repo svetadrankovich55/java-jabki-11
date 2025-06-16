@@ -310,7 +310,7 @@ public class TaskTest {
         System.setErr(new PrintStream(errContent));
         InvalidRatingException exception = assertThrows(InvalidRatingException.class, () -> Task.rateProduct("пять"));
 
-        assertEquals("Рейтинг должен быть числом от 1 до 5", exception.getMessage());
+        assertEquals("Рейтинг должен быть от 1 до 5", exception.getMessage());
         assertTrue(errContent.toString().contains("Ошибка: 'пять' не является числом"));
 
         System.setErr(System.err);

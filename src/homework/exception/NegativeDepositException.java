@@ -1,7 +1,7 @@
 package homework.exception;
 
 public class NegativeDepositException extends Exception {
-    public NegativeDepositException(String message) {
-        super(message);
+    public NegativeDepositException(double amount) {
+        super("Нельзя внести отрицательную сумму: " + amount);
     }
 }

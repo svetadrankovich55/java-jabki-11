@@ -10,18 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class Task {
-    // 6. Поиск товара по коду
+
+    private Task() {
+        throw new AssertionError("Создание экземпляров - запрещено!");
+    }
+
+    // Константа для 6 задания
     private static final Map<String, String> itemsMap = Map.of(
             "A123", "Ноутбук",
             "B456", "Смартфон",
             "C789", "Наушники"
     );
 
-    // 8. Система логина
+    // Константа для 8 задания
     static final String CORRECT_USERNAME = "admin";
     static final String CORRECT_PASSWORD = "qwerty123";
 
-    // 10. Сервис оценки товара
+    // Константа и геттер для 10 задания
     private static List<Integer> ratings = new ArrayList<>();
 
     public static List<Integer> getRatings() {
@@ -68,7 +73,7 @@ public class Task {
     // 5. Собственное исключение: депозит
     public static void deposit(double amount) throws NegativeDepositException {
         if (amount < 0) {
-            throw new NegativeDepositException("Нельзя внести отрицательную сумму: " + amount);
+            throw new NegativeDepositException(amount);
         }
         System.out.println("Успешно внесено: " + amount);
     }
@@ -76,7 +81,7 @@ public class Task {
     // 6. Поиск товара по коду
     public static String getItem(String code) {
         if (!itemsMap.containsKey(code)) {
-            throw new ItemNotFoundException("Товар с кодом '" + code + "' не найден");
+            throw new ItemNotFoundException(code);
         }
         return itemsMap.get(code);
     }
@@ -112,10 +117,10 @@ public class Task {
     // 9. Банковский перевод с валидацией
     public static void transfer(double fromAccount, double toAccount, double amount) throws InvalidTransferAmountException, InsufficientBalanceException {
         if (amount <= 0) {
-            throw new InvalidTransferAmountException("Сумма перевода должна быть положительной");
+            throw new InvalidTransferAmountException();
         }
         if (fromAccount < amount) {
-            throw new InsufficientBalanceException("Сумма на балансе недостаточная для перевода");
+            throw new InsufficientBalanceException();
         }
 
         fromAccount -= amount;
@@ -127,7 +132,7 @@ public class Task {
     // 10. Сервис оценки товара
     public static void rateProduct(int rating) throws InvalidRatingException {
         if (rating < 1 || rating > 5) {
-            throw new InvalidRatingException("Рейтинг должен быть от 1 до 5");
+            throw new InvalidRatingException();
         }
         ratings.add(rating);
         System.out.println("Рейтинг " + rating + " успешно добавлен");
@@ -139,7 +144,7 @@ public class Task {
             rateProduct(rating);
         } catch (NumberFormatException e) {
             System.err.println("Ошибка: '" + ratingStr + "' не является числом");
-            throw new InvalidRatingException("Рейтинг должен быть числом от 1 до 5");
+            throw new InvalidRatingException();
         }
     }
 }
