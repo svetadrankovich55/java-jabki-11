@@ -1,6 +1,11 @@
 package homework;
 
-import homework.exception.*;
+import homework.exception.InsufficientBalanceException;
+import homework.exception.InvalidRatingException;
+import homework.exception.InvalidTransferAmountException;
+import homework.exception.ItemNotFoundException;
+import homework.exception.LoginFailedException;
+import homework.exception.NegativeDepositException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -90,8 +95,7 @@ public class Task {
     public static List<String> readFile(String path) {
         List<String> lines = new ArrayList<>();
 
-        try (
-                BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
